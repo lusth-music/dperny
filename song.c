@@ -5,8 +5,8 @@
 #include "/usr/local/include/songlib/songlib.h"
 
 
-#define dir "/usr/local/share/samples/"
-#define base "piano-bright"
+#define dir "/usr/local/share/samples/piano/"
+#define base "bright_"
 
 #define SONGFILE "song.rra"
 
@@ -38,7 +38,7 @@ int main() {
     setSustain(0.99995);
     setAmplitude(0.3);
 
-    openOutput(SONGNAME,0,0);
+    openOutput(SONGFILE,0,0);
 
     verse(instrument,octave);
     last = 1;
