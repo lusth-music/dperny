@@ -3,48 +3,69 @@
 #include <stdarg.h>
 #include "/usr/local/include/songlib/util.h"
 #include "/usr/local/include/songlib/songlib.h"
+#include "/usr/local/include/songlib/key.h"
 
 
-#define dir "/usr/local/share/samples/piano/"
-#define base "bright_"
-
-#define SONGFILE "song.rra"
+#define dir "/usr/local/share/samples/"
+#define base "mandolin/sample_"
 
 /* change PROGRAM_NAME and PROGRAM_VERSION appropriately */
 
 char *PROGRAM_NAME = "song";
-char *PROGRAM_VERSION = "0.0.1";
+char *PROGRAM_VERSION = "0.01";
 
 static int last = 0;
 
 static void verse(int instrument,int octave) {
-  b(1,W,instrument,octave,"x--","-x-","--x",SX);
-  c(6,W,instrument,octave-1);
-  ci2(4,W,instrument,octave-1);
-  ci2(5,W,instrument,octave-1);
+  startMeasure();
+
+  c(1, Qd, instrument, octave);
+  c(1, I, instrument, octave);
+  c(4, Qd, instrument, octave);
+  c(4, I, instrument, octave);
+  c(1, Qd, instrument, octave);
+  c(1, I, instrument, octave);
+  c(4, Qd, instrument, octave);
+  c(4, I, instrument, octave);
+
+  c(5, Q, instrument, octave);
+  c(5, Q, instrument, octave);
+  c(5, Q, instrument, octave);
+  c(5, Q, instrument, octave);
+
+  c(4, Q, instrument, octave);
+  c(4, Q, instrument, octave);
+  c(4, Q, instrument, octave);
+  c(4, Q, instrument, octave);
+  // c(1, W, instrument, octave);
+
+  checkMeasure();
 }
 
 int main() {
-    int instrument;
-    int octave = 4;
+  int instrument;
+  int octave = 1;
 
-    songInit();
+  //setMode(MIXOLYDIAN);
+  setKey(G);
 
-    instrument = readScale(dir,base);
+  songInit();
 
-    setTempo(250);
-    setTime(4,4);
-    setStride(0.05);
-    setSustain(0.99995);
-    setAmplitude(0.3);
+  instrument = readScale(dir,base);
 
-    openOutput(SONGFILE,0,0);
+  setTempo(250);
+  setTime(4,4);
+  setStride(0.05);
+  setSustain(0.99995);
+  setAmplitude(0.3);
 
-    verse(instrument,octave);
-    last = 1;
-    verse(instrument,octave);
+  openOutput("song.rra",0,0);
 
-    closeOutput();
+  verse(instrument,octave);
+  last = 1;
+  verse(instrument,octave);
 
-    return 0;
+  closeOutput();
+
+  return 0;
 }

@@ -19,6 +19,9 @@ mix.rra		: $(RRA)
 play	: $(RRA)
 		rplay $(RRA)
 
+mix :
+		rrafastmixer $(RRA) | rplay
+
 playmix : mix.rra
 		rplay mix.rra
 
@@ -33,9 +36,6 @@ master.rra :  $(SRRA)
 
 master.mp3 : master.rra
 	rra2mp3 master.rra
-
-rraidentity : rraidentity.c
-		gcc -Wall -g -o rraidentity rraidentity.c -lsong -lm 
 
 .PHONY : clean
 
