@@ -19,24 +19,27 @@ static int last = 0;
 static void verse(int instrument,int octave) {
   startMeasure();
 
-  c(1, Qd, instrument, octave);
+  c(1, Q, instrument, octave);
+  c(1, Q, instrument, octave);
   c(1, I, instrument, octave);
-  c(4, Qd, instrument, octave);
-  c(4, I, instrument, octave);
-  c(1, Qd, instrument, octave);
   c(1, I, instrument, octave);
-  c(4, Qd, instrument, octave);
-  c(4, I, instrument, octave);
+  c(1, I, instrument, octave);
+  c(1, I, instrument, octave);
 
-  c(5, Q, instrument, octave);
-  c(5, Q, instrument, octave);
-  c(5, Q, instrument, octave);
-  c(5, Q, instrument, octave);
+  c(6, Q, instrument, octave);
+  c(6, Q, instrument, octave);
+  c(6, Q, instrument, octave);
+  c(6, Q, instrument, octave);
 
   c(4, Q, instrument, octave);
   c(4, Q, instrument, octave);
   c(4, Q, instrument, octave);
   c(4, Q, instrument, octave);
+
+  c(5, Q, instrument, octave);
+  c(5, Q, instrument, octave);
+  c(5, Q, instrument, octave);
+  c(5, Q, instrument, octave);
   // c(1, W, instrument, octave);
 
   checkMeasure();
@@ -46,7 +49,6 @@ int main() {
   int instrument;
   int octave = 1;
 
-  //setMode(MIXOLYDIAN);
   setKey(G);
 
   songInit();
