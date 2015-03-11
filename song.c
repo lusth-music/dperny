@@ -7,7 +7,8 @@
 
 
 #define dir "/usr/local/share/samples/"
-#define base "mandolin/sample_"
+#define base "guitar-electric/clean_"
+// define base "mandolin/sample_"
 
 /* change PROGRAM_NAME and PROGRAM_VERSION appropriately */
 
@@ -19,7 +20,28 @@ static int last = 0;
 static void verse(int instrument,int octave) {
   startMeasure();
 
-  c(1, Q, instrument, octave);
+  b(1, W, instrument, octave, "--x", "-x-", "x--", "-x-", SX);
+  b(1, W, instrument, octave, "--x", "-x-", "x--", "-x-", SX);
+  b(1, W, instrument, octave, "--x", "-x-", "x--", "-x-", SX);
+  b(1, W, instrument, octave, "--x", "-x-", "x--", "-x-", SX);
+
+  b(6, W, instrument, octave, "--x", "-x-", "x--", "-x-", SX);
+  b(6, W, instrument, octave, "--x", "-x-", "x--", "-x-", SX);
+  b(6, W, instrument, octave, "--x", "-x-", "x--", "-x-", SX);
+  b(6, W, instrument, octave, "--x", "-x-", "x--", "-x-", SX);
+
+  b(4, W, instrument, octave, "--x", "-x-", "x--", "-x-", SX);
+  b(4, W, instrument, octave, "--x", "-x-", "x--", "-x-", SX);
+  b(5, W, instrument, octave, "--x", "-x-", "x--", "-x-", SX);
+  b(5, W, instrument, octave, "--x", "-x-", "x--", "-x-", SX);
+
+  b(1, W, instrument, octave, "--x", "-x-", "x--", "-x-", SX);
+  b(1, W, instrument, octave, "--x", "-x-", "x--", "-x-", SX);
+  b(1, W, instrument, octave, "--x", "-x-", "x--", "-x-", SX);
+  b(1, W, instrument, octave, "--x", "-x-", "x--", "-x-", SX);
+  /*
+
+  c(1, W, instrument, octave);
   c(1, Q, instrument, octave);
   c(1, I, instrument, octave);
   c(1, I, instrument, octave);
@@ -41,6 +63,77 @@ static void verse(int instrument,int octave) {
   c(5, Q, instrument, octave);
   c(5, Q, instrument, octave);
   // c(1, W, instrument, octave);
+  */
+
+  checkMeasure();
+}
+
+static void chorus(int instrument, int octave) {
+  startMeasure();
+
+  checkMeasure();
+}
+
+static void intro(int instrument, int octave) {
+  startMeasure();
+
+  rest(I);
+  c(1, I, instrument, octave);
+  c(1, I, instrument, octave);
+  ci3(1, I, instrument, octave);
+  ci1(1, I, instrument, octave);
+  rest(I);
+
+  rest(Q);
+  // ci5(6, Q, instrument, octave);
+  c(4, Q, instrument, octave);
+  c(4, Q, instrument, octave);
+  c(4, Q, instrument, octave);
+  c(4, Q, instrument, octave);
+
+
+  rest(I);
+  c(1, I, instrument, octave);
+  c(1, I, instrument, octave);
+  ci3(1, I, instrument, octave);
+  ci1(1, I, instrument, octave);
+  rest(I);
+
+  rest(Q);
+  c(6, Q, instrument, octave);
+  c(6, Q, instrument, octave);
+  c(6, Q, instrument, octave);
+  c(6, Q, instrument, octave);
+
+  rest(I);
+  c(1, I, instrument, octave);
+  c(1, I, instrument, octave);
+  ci3(1, I, instrument, octave);
+  ci1(1, I, instrument, octave);
+  rest(I);
+
+  rest(Q);
+  c(5, Q, instrument, octave);
+  c(5, Q, instrument, octave);
+  c(5, Q, instrument, octave);
+  c(5, Q, instrument, octave);
+
+  //c(1, I, instrument, octave);
+  rest(I);
+  c(1, I, instrument, octave);
+  c(1, I, instrument, octave);
+  c(1, I, instrument, octave);
+
+  // rest(Q);
+  // ci5(6, Q, instrument, octave);
+  cpower(1, Q, instrument, octave);
+  rest(Q);
+  cpower(1, Q, instrument, octave);
+  rest(Q);
+  cpower(1, Q, instrument, octave);
+  cpower(1, Q, instrument, octave);
+  cpower(1, Q, instrument, octave);
+  cpower(1, Q, instrument, octave);
 
   checkMeasure();
 }
@@ -55,7 +148,7 @@ int main() {
 
   instrument = readScale(dir,base);
 
-  setTempo(250);
+  setTempo(200);
   setTime(4,4);
   setStride(0.05);
   setSustain(0.99995);
@@ -63,9 +156,11 @@ int main() {
 
   openOutput("song.rra",0,0);
 
-  verse(instrument,octave);
+  intro(instrument,octave);
   last = 1;
   verse(instrument,octave);
+  // last = 1;
+  // verse(instrument,octave);
 
   closeOutput();
 
