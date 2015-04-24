@@ -1,7 +1,7 @@
 #Place the names of all your tracks here (as RRA filenames)
 
-RRA = song.rra drums.rra leadguitar.rra
-SRRA = s-song.rra
+RRA = song.rra drums.rra leadguitar.rra bass.rra
+SRRA = s-song.rra s-drums.rra s-leadguitar.rra s-bass.rra
 INCLUDE=/usr/local/include/songlib/
 LIB=/usr/local/lib/
 
@@ -27,6 +27,15 @@ playmix : mix.rra
 
 s-song.rra : song.rra
 		rrastereo -r song.rra s-song.rra
+
+s-leadguitar.rra : leadguitar.rra
+		rrastereo -r leadguitar.rra s-leadguitar.rra
+
+s-drums.rra : drums.rra
+		rrastereo -r drums.rra s-drums.rra
+
+s-bass.rra : bass.rra
+		rrastereo -r bass.rra s-bass.rra
 
 playmaster:  $(SRRA)
 	rrafastmixer $(SRRA) | rramaster ! rplay
