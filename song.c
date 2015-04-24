@@ -7,7 +7,7 @@
 
 
 #define dir "/usr/local/share/samples/"
-#define base "guitar-electric/clean_"
+#define base "guitar-electric/cleanstrat_"
 // define base "mandolin/sample_"
 
 /* change PROGRAM_NAME and PROGRAM_VERSION appropriately */
@@ -17,138 +17,230 @@ char *PROGRAM_VERSION = "0.01";
 
 static int last = 0;
 
+/*
+ * 16 bars
+ */
 static void verse(int instrument,int octave) {
   startMeasure();
 
-  b(1, W, instrument, octave, "--x", "-x-", "x--", "-x-", SX);
-  b(1, W, instrument, octave, "--x", "-x-", "x--", "-x-", SX);
-  b(1, W, instrument, octave, "--x", "-x-", "x--", "-x-", SX);
-  b(1, W, instrument, octave, "--x", "-x-", "x--", "-x-", SX);
+  int i;
+  int j;
+  for(i = 0; i < 4; i++) {
+    for(j = 0; j < 4; j++) {
+      c(1, Id, instrument, octave);
+      c(1, S, instrument, octave);
+      c7thm(6, Id, instrument, octave-1);
+      c7thm(6, S, instrument, octave-1);
+    }
 
-  b(6, W, instrument, octave, "--x", "-x-", "x--", "-x-", SX);
-  b(6, W, instrument, octave, "--x", "-x-", "x--", "-x-", SX);
-  b(6, W, instrument, octave, "--x", "-x-", "x--", "-x-", SX);
-  b(6, W, instrument, octave, "--x", "-x-", "x--", "-x-", SX);
-
-  b(4, W, instrument, octave, "--x", "-x-", "x--", "-x-", SX);
-  b(4, W, instrument, octave, "--x", "-x-", "x--", "-x-", SX);
-  b(5, W, instrument, octave, "--x", "-x-", "x--", "-x-", SX);
-  b(5, W, instrument, octave, "--x", "-x-", "x--", "-x-", SX);
-
-  b(1, W, instrument, octave, "--x", "-x-", "x--", "-x-", SX);
-  b(1, W, instrument, octave, "--x", "-x-", "x--", "-x-", SX);
-  b(1, W, instrument, octave, "--x", "-x-", "x--", "-x-", SX);
-  b(1, W, instrument, octave, "--x", "-x-", "x--", "-x-", SX);
-  /*
-
-  c(1, W, instrument, octave);
-  c(1, Q, instrument, octave);
-  c(1, I, instrument, octave);
-  c(1, I, instrument, octave);
-  c(1, I, instrument, octave);
-  c(1, I, instrument, octave);
-
-  c(6, Q, instrument, octave);
-  c(6, Q, instrument, octave);
-  c(6, Q, instrument, octave);
-  c(6, Q, instrument, octave);
-
-  c(4, Q, instrument, octave);
-  c(4, Q, instrument, octave);
-  c(4, Q, instrument, octave);
-  c(4, Q, instrument, octave);
-
-  c(5, Q, instrument, octave);
-  c(5, Q, instrument, octave);
-  c(5, Q, instrument, octave);
-  c(5, Q, instrument, octave);
-  // c(1, W, instrument, octave);
-  */
+    for(j = 0; j < 8; j++) {
+      ci1(6, Id, instrument, octave-1);
+      ci1(6, S, instrument, octave-1);
+    }
+  }
 
   checkMeasure();
 }
 
+/*
+ * 8 bars
+ */
+static void prechorus(int instrument, int octave) {
+  startMeasure();
+
+  int i;
+  int j;
+  // 4 bars
+  for(i = 0; i < 2; i++) {
+    for(j = 0; j < 2; j++) {
+      c(1, Id, instrument, octave);
+      c(1, S, instrument, octave);
+      c7thm(6, Id, instrument, octave-1);
+      c7thm(6, S, instrument, octave-1);
+    }
+
+    for(j = 0; j < 4; j++) {
+      c(6, Id, instrument, octave-1);
+      c(6, S, instrument, octave-1);
+    }
+  }
+
+  // 1 bar
+  for(j = 0; j < 2; j++) {
+    c(1, Id, instrument, octave);
+    c(1, S, instrument, octave);
+    c7thm(6, Id, instrument, octave-1);
+    c7thm(6, S, instrument, octave-1);
+  }
+
+  // 1 bar
+  for(j = 0; j < 4; j++) {
+    c(6, Id, instrument, octave-1);
+    c(6, S, instrument, octave-1);
+  }
+
+  // 1 bar
+  for(j = 0; j < 4; j++) {
+    c(5, Id, instrument, octave-1);
+    c(5, S, instrument, octave-1);
+  }
+  
+  // 1 bar
+  for(j = 0; j < 4; j++) {
+    c(5, Id, instrument, octave);
+    c(5, S, instrument, octave);
+  }
+
+  checkMeasure();
+}
+
+/*
+ * 6 bars
+ */
 static void chorus(int instrument, int octave) {
   startMeasure();
+  
+  int i, j;
+
+  // 2 bars
+  for(i = 0; i < 2; i++) {
+    // 1 bar
+    for(j = 0; j < 2; j++) {
+      c(1, Id, instrument, octave);
+      c(1, S, instrument, octave);
+      c7thm(6, Id, instrument, octave-1);
+      c7thm(6, S, instrument, octave-1);
+    }
+
+    // 1 bar
+    for(j = 0; j < 4; j++) {
+      c(4, Id, instrument, octave);
+      c(4, S, instrument, octave);
+    }
+  }
+
+  // 2 bars
+  for(i = 0; i < 2; i++) {
+    // 1 bar
+    for(j = 0; j < 2; j++) {
+      c(1, Id, instrument, octave);
+      c(1, S, instrument, octave);
+      c7thm(6, Id, instrument, octave-1);
+      c7thm(6, S, instrument, octave-1);
+    }
+
+    // 1 bar
+    for(j = 0; j < 4; j++) {
+      c(5, Id, instrument, octave-1);
+      c(5, S, instrument, octave-1);
+    }
+  }
 
   checkMeasure();
 }
 
-static void intro(int instrument, int octave) {
-  startMeasure();
+/*
+ * 12 bars
+ */
+static void bridge(int instrument, int octave) {
+  int i, j;
 
-  rest(I);
-  c(1, I, instrument, octave);
-  c(1, I, instrument, octave);
-  ci3(1, I, instrument, octave);
-  ci1(1, I, instrument, octave);
-  rest(I);
+  // 2 bars
+  for(i = 0; i < 2; i++) {
+    // 1 bar
+    for(j = 0; j < 2; j++) {
+      c(1, Id, instrument, octave);
+      c(1, S, instrument, octave);
+      c7thm(6, Id, instrument, octave-1);
+      c7thm(6, S, instrument, octave-1);
+    }
 
-  rest(Q);
-  // ci5(6, Q, instrument, octave);
-  c(4, Q, instrument, octave);
-  c(4, Q, instrument, octave);
-  c(4, Q, instrument, octave);
-  c(4, Q, instrument, octave);
+    // 1 bar
+    for(j = 0; j < 4; j++) {
+      c(6, Id, instrument, octave-1);
+      c(6, S, instrument, octave-1);
+    }
+  }
 
+  // 2 bars
+  for(j = 0; j < 8; j++) {
+    c(5, Id, instrument, octave-1);
+    c(5, S, instrument, octave-1);
+  }
 
-  rest(I);
-  c(1, I, instrument, octave);
-  c(1, I, instrument, octave);
-  ci3(1, I, instrument, octave);
-  ci1(1, I, instrument, octave);
-  rest(I);
+  // 2 bars
+  for(j = 0; j < 8; j++) {
+    c(6, Id, instrument, octave-1);
+    c(6, S, instrument, octave-1);
+  }
 
-  rest(Q);
-  c(6, Q, instrument, octave);
-  c(6, Q, instrument, octave);
-  c(6, Q, instrument, octave);
-  c(6, Q, instrument, octave);
+  // 2 bars
+  for(j = 0; j < 8; j++) {
+    c(5, Id, instrument, octave-1);
+    c(5, S, instrument, octave-1);
+  }
 
-  rest(I);
-  c(1, I, instrument, octave);
-  c(1, I, instrument, octave);
-  ci3(1, I, instrument, octave);
-  ci1(1, I, instrument, octave);
-  rest(I);
+  // 1 bar
+  for(j = 0; j < 4; j++) {
+    c(4, Id, instrument, octave);
+    c(4, S, instrument, octave);
+  }
 
-  rest(Q);
-  c(5, Q, instrument, octave);
-  c(5, Q, instrument, octave);
-  c(5, Q, instrument, octave);
-  c(5, Q, instrument, octave);
-
-  //c(1, I, instrument, octave);
-  rest(I);
-  c(1, I, instrument, octave);
-  c(1, I, instrument, octave);
-  c(1, I, instrument, octave);
-
-  // rest(Q);
-  // ci5(6, Q, instrument, octave);
-  cpower(1, Q, instrument, octave);
-  rest(Q);
-  cpower(1, Q, instrument, octave);
-  rest(Q);
-  cpower(1, Q, instrument, octave);
-  cpower(1, Q, instrument, octave);
-  cpower(1, Q, instrument, octave);
-  cpower(1, Q, instrument, octave);
+  // 1 bar
+  for(j = 0; j < 4; j++) {
+    c(5, Id, instrument, octave);
+    c(5, S, instrument, octave);
+  }
 
   checkMeasure();
+}
+
+/*
+ * 8 bars
+ */
+static void intro(int instrument, int octave) {
+  setAmplitude(0.2);
+  startMeasure();
+
+  int i;
+  int j;
+  for(i = 0; i < 2; i++) {
+    for(j = 0; j < 4; j++) {
+      c(1, Id, instrument, octave);
+      c(1, S, instrument, octave);
+      c7thm(6, Id, instrument, octave-1);
+      c7thm(6, S, instrument, octave-1);
+    }
+    checkMeasure();
+
+    startMeasure();
+    for(j = 0; j < 8; j++) {
+      ci1(6, Id, instrument, octave-1);
+      ci1(6, S, instrument, octave-1);
+    }
+    checkMeasure();
+  }
+
+  checkMeasure();
+  setAmplitude(0.3);
+}
+
+static void end(int instrument, int octave) {
+  b(1, W, instrument, octave, "x--", "-x-", "--x", "X--", SX);
+  c(1, W, instrument, octave);
 }
 
 int main() {
   int instrument;
-  int octave = 1;
+  int octave = 5;
 
-  setKey(G);
+  setKey(A);
 
   songInit();
 
   instrument = readScale(dir,base);
 
-  setTempo(200);
+  setTempo(144);
   setTime(4,4);
   setStride(0.05);
   setSustain(0.99995);
@@ -156,11 +248,18 @@ int main() {
 
   openOutput("song.rra",0,0);
 
-  intro(instrument,octave);
   last = 1;
+  intro(instrument,octave);
   verse(instrument,octave);
-  // last = 1;
-  // verse(instrument,octave);
+  prechorus(instrument, octave);
+  verse(instrument,octave);
+  prechorus(instrument, octave);
+  chorus(instrument, octave);
+  verse(instrument, octave);
+  bridge(instrument, octave);
+  chorus(instrument, octave);
+  prechorus(instrument, octave);
+  end(instrument, octave);
 
   closeOutput();
 
